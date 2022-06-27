@@ -13,3 +13,4 @@
 > Após o fork do repositorio e a clonagem do mesmo para o ambiente local executar o  ```dotnet restore```.
 
 > Ao instalar as depedencias do sistema dentro da pasta main executar ```dotnet run``` para verificação inicial se a execução está ocorrendo.
+
