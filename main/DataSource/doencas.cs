@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace main.DataSource;
 
-public class doencas {
-    int id;
-    string nome;
+public class doencas
+{
+    public int id { get; set; }
+    public string nome { get; set; }
 }

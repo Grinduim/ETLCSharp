@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace main.DataSource;
 
-public class Estados {
+public class Estados
+{
 
-int id;
-string nome;
+    public int id { get; set; }
+    public string nome { get; set; }
 
-regioes regiao;
+    public regioes regiao { get; set; }
 
 }

@@ -1,13 +1,16 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.EntityFrameworkCore;
 
 namespace main.DataSource;
 
 public class Paciente {
-    int id;
-    string nome;
-    int idade;
-    Estados estado;
-    Class_social class_Social;
+   public int id;
+   public string nome;
+   public int idade;
+  public  int id_estado;
+
+   public int id_classe_Social;
 }
