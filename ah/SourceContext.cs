@@ -1,19 +1,15 @@
 using System;
-
 using Microsoft.EntityFrameworkCore;
-
 namespace main.DataSource;
 
 class SourceContext : DbContext
 {
-
     public DbSet<Paciente> pacientes { get; set; }
     public DbSet<regioes> regioes { get; set; }
     public DbSet<Estados> estados { get; set; }
     public DbSet<doencas> doencas { get; set; }
     public DbSet<diagnosticos> diagnosticos { get; set; }
     public DbSet<Classe_social> class_social { get; set; }
-
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -41,7 +37,7 @@ class SourceContext : DbContext
         {
             entity.HasKey(e => e.id);
             entity.Property(e => e.nome);
-            entity.HasOne(e => e.regiao);
+            entity.Property(e => e.regiao).HasColumnName("id_regiao").HasColumnType("int");
         }
         );
 

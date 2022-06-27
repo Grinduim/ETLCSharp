@@ -1,16 +1,17 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
-using Microsoft.EntityFrameworkCore;
+namespace main.DataSource
+{
+    public partial class Paciente
+    {
+        public int Id { get; set; }
+        public string? Nome { get; set; }
+        public int Idade { get; set; }
+        public int IdEstado { get; set; }
+        public int IdClasseSocial { get; set; }
 
-namespace main.DataSource;
-
-public class Paciente {
-   public int id;
-   public string nome;
-   public int idade;
-  public  int id_estado;
-
-   public int id_classe_Social;
+        public virtual ClasseSocial IdClasseSocialNavigation { get; set; } = null!;
+        public virtual Estado IdEstadoNavigation { get; set; } = null!;
+    }
 }
