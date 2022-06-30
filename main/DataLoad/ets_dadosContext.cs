@@ -29,12 +29,8 @@ namespace main.DataLoad
         {
             if (!optionsBuilder.IsConfigured)
             {
-<<<<<<< HEAD
 
                 optionsBuilder.UseSqlServer("Server=JVLPC0553;Database=ets_dados;Integrated Security=True;");
-=======
-               optionsBuilder.UseSqlServer("Server=JVLPC0565;Database=ets_dados;Integrated Security=True;");
->>>>>>> 925ee17b15c298feebd4a989869a6ba4ea8ccfba
             }
         }
 
