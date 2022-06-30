@@ -38,7 +38,7 @@ namespace main.DataLoad
         {
             modelBuilder.Entity<DiagnosticosClasseMe>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e=> e.Id);
 
                 entity.ToTable("diagnosticos_classe_mes");
 
@@ -47,10 +47,6 @@ namespace main.DataLoad
                     .IsUnicode(false)
                     .HasColumnName("classe_social")
                     .IsFixedLength();
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.Mes).HasColumnName("mes");
 
