@@ -29,8 +29,7 @@ namespace main.DataLoad
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=JVLPC0497;Database=ets_dados;Integrated Security=True;");
+               optionsBuilder.UseSqlServer("Server=JVLPC0565;Database=ets_dados;Integrated Security=True;");
             }
         }
 
@@ -74,7 +73,7 @@ namespace main.DataLoad
 
             modelBuilder.Entity<DoençaIdadeRegiao>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("doença_idade_regiao");
 
@@ -82,10 +81,6 @@ namespace main.DataLoad
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("doenca");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.MediaIdade).HasColumnName("media_idade");
 
