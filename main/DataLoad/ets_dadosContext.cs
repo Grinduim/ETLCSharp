@@ -29,8 +29,12 @@ namespace main.DataLoad
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
 
                 optionsBuilder.UseSqlServer("Server=JVLPC0553;Database=ets_dados;Integrated Security=True;");
+=======
+               optionsBuilder.UseSqlServer("Server=JVLPC0565;Database=ets_dados;Integrated Security=True;");
+>>>>>>> 925ee17b15c298feebd4a989869a6ba4ea8ccfba
             }
         }
 
@@ -74,7 +78,7 @@ namespace main.DataLoad
 
             modelBuilder.Entity<DoençaIdadeRegiao>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("doença_idade_regiao");
 
@@ -82,10 +86,6 @@ namespace main.DataLoad
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("doenca");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.MediaIdade).HasColumnName("media_idade");
 
@@ -168,7 +168,7 @@ namespace main.DataLoad
 
             modelBuilder.Entity<PacientesClasseEstado>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e=> e.Id);
 
                 entity.ToTable("pacientes_classe_estado");
 
@@ -183,9 +183,6 @@ namespace main.DataLoad
                     .IsUnicode(false)
                     .HasColumnName("estado");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.QuantidadePacientes).HasColumnName("quantidade_pacientes");
             });

@@ -27,8 +27,12 @@ namespace main.DataSource
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
 
                 optionsBuilder.UseSqlServer("Server=JVLPC0553;Database=analytic_data;Integrated Security=True;");
+=======
+            optionsBuilder.UseSqlServer("Server=JVLPC0565;Database=analytic_data;Integrated Security=True;");
+>>>>>>> 925ee17b15c298feebd4a989869a6ba4ea8ccfba
             }
         }
 
