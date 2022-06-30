@@ -8,5 +8,6 @@ class main{
     public static void Main(string[] args){
         FirstService.SeparaDados();
      
+        DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
     }
 }

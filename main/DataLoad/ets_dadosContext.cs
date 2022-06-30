@@ -29,7 +29,7 @@ namespace main.DataLoad
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=CTPC3622;Database=ets_dados;Integrated Security=True;");
+               optionsBuilder.UseSqlServer("Server=JVLPC0565;Database=ets_dados;Integrated Security=True;");
             }
         }
 
@@ -73,7 +73,7 @@ namespace main.DataLoad
 
             modelBuilder.Entity<DoençaIdadeRegiao>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("doença_idade_regiao");
 
@@ -81,10 +81,6 @@ namespace main.DataLoad
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("doenca");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.MediaIdade).HasColumnName("media_idade");
 
