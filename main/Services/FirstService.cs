@@ -2,13 +2,57 @@ using System;
 using main.DataSource;
 using main.DataLoad;
 
-
 namespace main.Services;
 
-class FirstService{
-        public static void SeparaDados()
+class FirstService
+{
+    public static void DiagnosticosPorClassEMes()
     {
-        using (var context = new analytic_dataContext())
+        Console.WriteLine("teste");
+        using (var DataSource = new DataSource.analytic_dataContext())
+        {
+            var diagnosticos = DataSource.Diagnosticos.Join(DataSource.Pacientes,
+            dg => dg.IdPaciente,
+            p => p.Id,
+            (dg, p) => new
+            {
+                IdClassSocial = p.IdClasseSocial,
+                DataDiagnostico = dg.DataDiagnostico,
+                IdDoenca = dg.IdDoenca
+            }
+            ).Join(DataSource.Doencas,
+            dg => dg.IdDoenca,
+            de => de.Id,
+            (dg, de) => new
+            {
+                Doenca = de.Nome,
+                IdClassSocial = dg.IdClassSocial,
+                Mes = dg.DataDiagnostico.Month,
+            }).GroupBy(cs => new
+            {
+                cs.IdClassSocial,
+                cs.Mes
+            })
+            .Select(q => new
+            {
+                QtdDiagnosticos = q.Count(dg => dg.Doenca != ""),
+                ClasseSocial = q.Key.IdClassSocial,
+                Mes = q.Key.Mes
+
+            }).OrderBy(x => x.Mes)
+            .ToList();
+
+            foreach (var item in diagnosticos)
+            {
+                DataLoad.DiagnosticosClasseMe.SaveData(item.QtdDiagnosticos, item.ClasseSocial, item.Mes);
+            }
+
+        }
+    }
+
+    public static void SeparaDados()
+    {
+        using (var context = new DataSource.analytic_dataContext())
         {
             var querry = context.Pacientes
             .Join(context.Estados, pc => pc.IdEstado, es => es.Id, (pc, es) => new
@@ -31,8 +75,8 @@ class FirstService{
              });
             foreach (var item in querry)
             {
-                
-                PacientesClasseEstado.SaveData(item.Pacientes,item.ClasseSocial,item.Estado);
+
+                DataLoad.PacientesClasseEstado.SaveData(item.Pacientes, item.ClasseSocial, item.Estado);
             }
         }
 
@@ -40,11 +84,11 @@ class FirstService{
 
 
     
-    public static void IncidenciaPorIdade(){
+    public static void IncidenciaPorIdadePorEstado(){
 
         var query = new object();
 
-        using(var context = new analytic_dataContext()){
+        using(var context = new DataSource.analytic_dataContext()){
             var interval = 20; //years
 
             var SelectFaixa = context.Pacientes.Join(context.Diagnosticos, a => a.Id, b => b.IdPaciente,(a,b) => new{
@@ -82,32 +126,7 @@ class FirstService{
             foreach(var linha in SelectFaixa){
                 Console.WriteLine(linha);
             }
-
-            // using(var context2 = new ets_dadosContext())
-            //  {
-            //     var table = context2.IncidenciasPorIdades;
-            //     foreach(var line in SelectFaixa)
-            //     {
-            //         string Faixa = "";
-            //         switch(line.GroupIndex){
-            //             case 1: 
-            //                 Faixa = "0-20";
-            //                 break;
-            //         }
-            //         var insert = new
-            //         {
-            //             FaixaEtaria = Faixa,
-            //             Qtd = 
-            //         }           
-            //         table.Add()
-            //     }
-            // }
-        }
-
-
-        
+        }      
     }
-
-
 }
 
