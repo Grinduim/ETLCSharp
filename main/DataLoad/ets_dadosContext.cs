@@ -29,7 +29,7 @@ namespace main.DataLoad
         {
             if (!optionsBuilder.IsConfigured)
             {
-               optionsBuilder.UseSqlServer("Server=JVLPC0497;Database=ets_dados;Integrated Security=True;");
+               optionsBuilder.UseSqlServer("Server=CTPC3616;Database=ets_dados;Integrated Security=True;");
             }
         }
 

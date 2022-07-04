@@ -27,7 +27,7 @@ namespace main.DataSource
         {
             if (!optionsBuilder.IsConfigured)
             {
-            optionsBuilder.UseSqlServer("Server=JVLPC0497;Database=analytic_data;Integrated Security=True;");
+            optionsBuilder.UseSqlServer("Server=CTPC3616;Database=analytic_data;Integrated Security=True;");
             }
         }
 
