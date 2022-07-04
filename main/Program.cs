@@ -15,8 +15,9 @@ class main
             // FirstService.IncidenciaPorFaixaEtariaPorEstado();
             // FirstService.MediaSalarialDoençaIdade();
 
-            FirstService.Reincidencia_Classe_Mes();
+            // FirstService.Reincidencia_Classe_Mes();
 
+            // FirstService.Pacientes_Classe_Estado();
         }
     }
 }

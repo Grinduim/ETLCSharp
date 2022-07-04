@@ -29,8 +29,7 @@ namespace main.DataLoad
         {
             if (!optionsBuilder.IsConfigured)
             {
-
-                optionsBuilder.UseSqlServer("Server=JVLPC0497;Database=ets_dados;Integrated Security=True;");
+               optionsBuilder.UseSqlServer("Server=CTPC3616;Database=ets_dados;Integrated Security=True;");
             }
         }
 
@@ -55,15 +54,11 @@ namespace main.DataLoad
 
             modelBuilder.Entity<DiagnosticosPorClasse>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e=> e.Id);
 
                 entity.ToTable("diagnosticos_por_classe");
 
                 entity.Property(e => e.ClasseSocial).HasColumnName("classe_social");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.QuantidadeDiagnosticos).HasColumnName("quantidade_diagnosticos");
             });
@@ -111,7 +106,6 @@ namespace main.DataLoad
             modelBuilder.Entity<NewTable>(entity =>
             {
                 
-
                 entity.ToTable("NewTable");
                 entity.HasKey( e=> e.Id);
 
@@ -128,16 +122,15 @@ namespace main.DataLoad
 
             modelBuilder.Entity<OcorrenciasClasseSocialRegiao>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("ocorrencias_classe_social_regiao");
+
+                entity.HasKey(e=> e.Id);
 
                 entity.Property(e => e.ClasseSocial)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("classe_social");
 
-                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.NomeDoença)
                     .HasMaxLength(100)
@@ -178,10 +171,6 @@ namespace main.DataLoad
                 entity.HasKey( q=> q.Id);
 
                 entity.ToTable("reiciendencia_meses_regia");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.Mes).HasColumnName("mes");
 
