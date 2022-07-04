@@ -30,7 +30,7 @@ namespace main.DataLoad
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer("Server=JVLPC0553;Database=ets_dados;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=JVLPC0497;Database=ets_dados;Integrated Security=True;");
             }
         }
 
@@ -175,7 +175,7 @@ namespace main.DataLoad
 
             modelBuilder.Entity<ReiciendenciaMesesRegium>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey( q=> q.Id);
 
                 entity.ToTable("reiciendencia_meses_regia");
 
@@ -195,7 +195,6 @@ namespace main.DataLoad
                     .IsUnicode(false)
                     .HasColumnName("regiao");
 
-                entity.Property(e => e.Reicidencia).HasColumnName("reicidencia");
             });
 
             OnModelCreatingPartial(modelBuilder);
