@@ -10,11 +10,7 @@ class main
         public static void Main(string[] args)
         {
 
-            //FirstService.SeparaDados();
-            //DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
-            // FirstService.IncidenciaPorFaixaEtariaPorEstado();
-            // FirstService.MediaSalarialDoençaIdade();
-
+            FirstService.Pacientes_Classe_Estado();
         }
     }
 }
