@@ -1,7 +1,7 @@
+using System.Reflection;
 using System;
 using main.DataSource;
 using main.DataLoad;
-
 namespace main.Services;
 
 class FirstService
@@ -50,7 +50,7 @@ class FirstService
         }
     }
 
-    public static void SeparaDados()
+    public static void SeparaDados() // paciente Classe SocialEstado
     {
         using (var context = new DataSource.analytic_dataContext())
         {
@@ -82,9 +82,52 @@ class FirstService
 
     }
 
+    public static void MediaSalarialDoençaIdade() {
 
-    
-    public static void IncidenciaPorFaixaEtariaPorEstado(){
+        using(var context =  new analytic_dataContext()){
+
+            var result  = context.Pacientes.Join(context.Diagnosticos,
+            p=> p.Id,
+            dg => dg.IdPaciente,
+            (p,dg) => new {
+                ClasseSocial = p.IdClasseSocial,
+                Idade = p.Idade,
+                Doenca = dg.IdDoenca,
+            }
+            ).Join(context.Doencas,
+            p=> p.Doenca,
+            doe => doe.Id,
+            (p,doe) => new {
+                ClasseSocial = p.ClasseSocial,
+                Idade = p.Idade,
+                Doenca = doe.Nome
+            }
+            ).Join(context.ClasseSocials,
+            p=> p.ClasseSocial,
+            cs => cs.Id,
+            (p,cs) => new {
+                MediaSalarial = ((cs.SalarioPiso + cs.SalarioTeto) / 2),
+                Idade = p.Idade,
+                Doenca = p.Doenca
+            }
+            ).GroupBy(q => q.Doenca)
+            .Select( p => new {
+                MediaSalarial = Math.Round(p.Average(q=> q.MediaSalarial), 2),
+                MediaIdade =  (int) Math.Round(p.Average(q=> q.Idade),0),
+                Doenca = p.Key
+            });
+
+          
+
+            foreach (var item in result)
+            {
+                NewTable.InsertData(item.MediaSalarial, item.MediaIdade, item.Doenca);
+
+            }
+        }
+    }
+
+     public static void IncidenciaPorFaixaEtariaPorEstado(){
 
         var query = new object();
 
