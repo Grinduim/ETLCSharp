@@ -2,16 +2,19 @@
 using main.Services;
 using main.DataLoad;
 using Microsoft.EntityFrameworkCore;
-
-
 namespace main;
 class main
 {
-    public static void Main(string[] args)
+    class Program
     {
-        //FirstService.DiagnosticosPorClassEMes();
-        // FirstService.SeparaDados();
-        // DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
-        FirstService.MediaSalarialDoençaIdade();
+        public static void Main(string[] args)
+        {
+
+            //FirstService.SeparaDados();
+            //DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
+            // FirstService.IncidenciaPorFaixaEtariaPorEstado();
+            // FirstService.MediaSalarialDoençaIdade();
+
+        }
     }
 }
