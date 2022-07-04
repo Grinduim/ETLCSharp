@@ -6,7 +6,7 @@ namespace main.Services;
 
 class DoencaIdadeRegiaoService{
     public static void doencaIdadeRegiaoService(){
-        using(var context = new analytic_dataContext())
+        using(var context = new DataSource.analytic_dataContext())
         {
             var doenca = context.Doencas;
             var paciente = context.Pacientes;
@@ -48,7 +48,7 @@ class DoencaIdadeRegiaoService{
                 var nomeDoenca = item.nomeDoenca;
                 var mediaIdade = item.mediaIdade;
                 var nomeRegiao = item.nomeRegiao;
-                DoençaIdadeRegiao.SaveData(nomeDoenca, mediaIdade, nomeRegiao);
+                DataLoad.DoençaIdadeRegiao.SaveData(nomeDoenca, mediaIdade, nomeRegiao);
             }
         }
     }
