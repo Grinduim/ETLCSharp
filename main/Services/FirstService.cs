@@ -84,14 +84,14 @@ class FirstService
 
 
     
-    public static void IncidenciaPorIdadePorEstado(){
+    public static void IncidenciaPorFaixaEtariaPorEstado(){
 
         var query = new object();
 
         using(var context = new DataSource.analytic_dataContext()){
             var interval = 20; //years
 
-            var SelectFaixa = context.Pacientes.Join(context.Diagnosticos, a => a.Id, b => b.IdPaciente,(a,b) => new{
+            var Query = context.Pacientes.Join(context.Diagnosticos, a => a.Id, b => b.IdPaciente,(a,b) => new{
                 Idade = a.Idade,
                 IdDiagnostico = b.Id,
                 IdDoenca = b.IdDoenca,
@@ -117,14 +117,14 @@ class FirstService
             .Select(y => new{
                 Estado = y.Key.Estado, 
                 FaixaEtaria=y.Key.faixaEtaria,
-                Doenca = y.Key.Doenca,
-                Count = y.Count(ap => ap.IdDiagnostic > -1)
+                NomeDoenca = y.Key.Doenca,
+                QuantidadeOcorrencias = y.Count(ap => ap.IdDiagnostic > -1)
             });
 
-
-
-            foreach(var linha in SelectFaixa){
-                Console.WriteLine(linha);
+            foreach(var item in Query){
+                Console.WriteLine(item);
+                DataLoad.IncidenciasPorIdade.SaveData(item.Estado, item.QuantidadeOcorrencias, item.NomeDoenca, item.FaixaEtaria);
+                Console.WriteLine("Item Salvo");
             }
         }      
     }

@@ -89,7 +89,7 @@ namespace main.DataLoad
 
             modelBuilder.Entity<IncidenciasPorIdade>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("incidencias_por_idade");
 
@@ -97,10 +97,6 @@ namespace main.DataLoad
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("estados");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.Idade).HasColumnName("idade");
 

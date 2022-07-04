@@ -8,5 +8,6 @@ class Program{
      
         //FirstService.SeparaDados();
         //DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
+        FirstService.IncidenciaPorFaixaEtariaPorEstado();
     }
 }
