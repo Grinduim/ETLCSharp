@@ -10,7 +10,8 @@ class main
     public static void Main(string[] args)
     {
         //FirstService.DiagnosticosPorClassEMes();
-        FirstService.SeparaDados();
-        DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
+        // FirstService.SeparaDados();
+        // DoencaIdadeRegiaoService.doencaIdadeRegiaoService();
+        FirstService.MediaSalarialDoençaIdade();
     }
 }

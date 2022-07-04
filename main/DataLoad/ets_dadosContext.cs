@@ -113,18 +113,16 @@ namespace main.DataLoad
 
             modelBuilder.Entity<NewTable>(entity =>
             {
-                entity.HasNoKey();
+                
 
                 entity.ToTable("NewTable");
+                entity.HasKey( e=> e.Id);
 
                 entity.Property(e => e.Doenca)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("doenca");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
 
                 entity.Property(e => e.MediaIdade).HasColumnName("media_idade");
 
